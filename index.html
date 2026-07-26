@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdel Moujib Begdouri Terraf — Data Engineer & AI Portfolio</title>
+<style>
+  :root{
+    --ink:#11141c;
+    --paper:#f3efe6;
+    --mustard:#c98a2c;
+    --rust:#9c4324;
+    --line: rgba(17,20,28,0.14);
+    --mono: 'Courier New', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --serif: Georgia, 'Iowan Old Style', 'Palatino Linotype', Palatino, serif;
+    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:var(--sans);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  ::selection{background:var(--mustard); color:var(--ink);}
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- scroll reveal ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity .7s cubic-bezier(.16,.8,.24,1), transform .7s cubic-bezier(.16,.8,.24,1);
+    will-change:opacity, transform;
+  }
+  .reveal.in{
+    opacity:1;
+    transform:translateY(0);
+  }
+  .reveal-stagger > *{
+    opacity:0;
+    transform:translateY(22px);
+    transition:opacity .6s cubic-bezier(.16,.8,.24,1), transform .6s cubic-bezier(.16,.8,.24,1);
+  }
+  .reveal-stagger.in > *{
+    opacity:1;
+    transform:translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce){
+    .reveal, .reveal-stagger > *{
+      opacity:1 !important;
+      transform:none !important;
+      transition:none !important;
+    }
+  }
+
+  /* progress bar */
+  .scroll-progress{
+    position:fixed;
+    top:0; left:0;
+    height:3px;
+    width:0%;
+    background:var(--mustard);
+    z-index:100;
+    transition:width .08s linear;
+  }
+
+  /* ---------- nav ---------- */
+  header.site{
+    position:sticky;
+    top:0;
+    z-index:50;
+    backdrop-filter: blur(8px);
+    background: rgba(17,20,28,0.82);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 0;
+  }
+  .logo{
+    font-family:var(--serif);
+    font-size:20px;
+    letter-spacing:.02em;
+    display:inline-block;
+    cursor:default;
+  }
+  .logo:hover{ animation:logoWiggle .5s ease; }
+  @keyframes logoWiggle{
+    0%,100%{ transform:rotate(0deg); }
+    20%{ transform:rotate(-4deg); }
+    40%{ transform:rotate(3deg); }
+    60%{ transform:rotate(-2deg); }
+    80%{ transform:rotate(1deg); }
+  }
+  .logo em{ color:var(--mustard); font-style:normal; display:inline-block; }
+  nav ul{
+    display:flex;
+    gap:26px;
+    list-style:none;
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+  nav ul a{ text-decoration:none; opacity:.78; transition:opacity .2s ease, color .2s ease; }
+  nav ul a:hover{ opacity:1; color:var(--mustard); }
+  nav ul li.cta a{
+    border:1px solid var(--paper);
+    padding:7px 14px;
+    border-radius:999px;
+    opacity:1;
+    transition:background .2s ease, color .2s ease;
+  }
+  nav ul li.cta a:hover{ background:var(--paper); color:var(--ink); animation:ctaBounce .4s ease; }
+  @keyframes ctaBounce{
+    0%,100%{ transform:scale(1); }
+    40%{ transform:scale(1.12) rotate(-2deg); }
+    70%{ transform:scale(0.96) rotate(1deg); }
+  }
+
+  .nav-toggle{
+    display:none;
+    background:none;
+    border:1px solid var(--line);
+    color:var(--paper);
+    border-radius:8px;
+    width:40px;
+    height:40px;
+    font-size:16px;
+    cursor:pointer;
+  }
+  @media (max-width:760px){
+    .wrap{ padding:0 20px; }
+    nav ul{
+      position:fixed;
+      top:64px;
+      left:0;
+      right:0;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:0;
+      background:var(--ink);
+      border-bottom:1px solid var(--line);
+      padding:8px 20px 18px;
+      transform:translateY(-12px);
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .18s ease, transform .18s ease;
+    }
+    nav ul.open{
+      opacity:1;
+      transform:translateY(0);
+      pointer-events:auto;
+    }
+    nav ul li{ width:100%; padding:12px 0; border-top:1px solid var(--line); }
+    nav ul li:first-child{ border-top:none; }
+    nav ul li.cta{ margin-top:6px; }
+    nav ul li.cta a{ display:inline-block; }
+    .nav-toggle{ display:block; }
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:70px 0 70px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .kicker{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--mustard);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:26px;
+  }
+  .hero .kicker .dot{
+    width:7px;height:7px;border-radius:50%;
+    background:var(--mustard);
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{ opacity:1; transform:scale(1); }
+    50%{ opacity:.35; transform:scale(.7); }
+  }
+  .hero h1{
+    font-family:var(--serif);
+    font-weight:400;
+    font-size:clamp(36px, 4.4vw, 80px);
+    line-height:1.04;
+    letter-spacing:-0.01em;
+    max-width:980px;
+  }
+  .hero h1 .accent{
+    color:var(--mustard);
+    font-style:italic;
+  }
+  .hero .sub{
+    margin-top:30px;
+    max-width:600px;
+    font-size:18px;
+    color:rgba(243,239,230,.78);
+  }
+  .hero .scroll-cue{
+    margin-top:64px;
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:rgba(243,239,230,.55);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    animation:cueFloat 2.6s ease-in-out infinite;
+  }
+  @keyframes cueFloat{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(6px); }
+  }
+  .hero .scroll-cue .ln{
+    width:36px; height:1px; background:rgba(243,239,230,.4);
+  }
+
+  /* big ghost type behind hero */
+  .hero .ghost{
+    position:absolute;
+    right:-40px;
+    bottom:-60px;
+    font-family:var(--serif);
+    font-size:260px;
+    color:transparent;
+    -webkit-text-stroke:1px rgba(243,239,230,.08);
+    pointer-events:none;
+    user-select:none;
+    line-height:1;
+    animation:ghostBob 6s ease-in-out infinite;
+  }
+  @keyframes ghostBob{
+    0%,100%{ transform:translateY(0) rotate(0deg); }
+    50%{ transform:translateY(-14px) rotate(-1.5deg); }
+  }
+
+  /* ---------- section labels ---------- */
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:24px;
+    margin-bottom:48px;
+    flex-wrap:wrap;
+  }
+  .section-head .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--mustard);
+  }
+  .section-head h2{
+    font-family:var(--serif);
+    font-weight:400;
+    font-size:clamp(28px,4vw,44px);
+    margin-top:8px;
+    max-width:640px;
+  }
+  .section-head p.note{
+    max-width:340px;
+    font-size:14px;
+    color:rgba(243,239,230,.6);
+  }
+  #portrait{ display:block; width:100%; height:100%; object-fit:cover; }
+
+  section{ padding:96px 0; border-bottom:1px solid var(--line); }
+
+  /* ---------- intro / about ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns: 1.1fr 1.4fr;
+    gap:64px;
+  }
+  .about-grid .portrait{
+    aspect-ratio: 4/5;
+    background: linear-gradient(160deg, #1c2030, #11141c);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:rgba(243,239,230,.45);
+    text-align:center;
+    overflow:hidden;
+    transition:transform .5s ease;
+  }
+  .about-grid .portrait:hover{ transform:scale(1.02); }
+  .about-grid .bio p{ margin-bottom:18px; font-size:16px; color:rgba(243,239,230,.85); max-width:560px;}
+  .about-grid .bio p:first-child{ font-size:19px; font-family:var(--serif); color:var(--paper); }
+  .chess-flex{
+    display:inline-block;
+    cursor:default;
+  }
+  .chess-flex:hover{ animation:knightHop .6s ease; }
+  @keyframes knightHop{
+    0%,100%{ transform:translateY(0) rotate(0deg); }
+    25%{ transform:translateY(-6px) rotate(-6deg); }
+    50%{ transform:translateY(0) rotate(4deg); }
+    75%{ transform:translateY(-3px) rotate(-2deg); }
+  }
+  .facts{
+    margin-top:36px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px 32px;
+  }
+  .facts div{ border-top:1px solid var(--line); padding-top:10px; }
+  .facts span.k{
+    display:block;
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:rgba(243,239,230,.5);
+    margin-bottom:6px;
+  }
+  .facts span.v{ font-size:15px; }
+
+  /* ---------- timeline (education / experience) ---------- */
+  .timeline{ border-top:1px solid var(--line); }
+  .tl-item{
+    display:grid;
+    grid-template-columns: 200px 1fr;
+    gap:32px;
+    padding:30px 0;
+    border-bottom:1px solid var(--line);
+    transition:padding-left .3s ease, border-color .3s ease;
+  }
+  .tl-item:hover{
+    padding-left:10px;
+    border-color:rgba(201,138,44,.4);
+  }
+  .tl-item .tl-date{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--mustard);
+  }
+  .tl-item h3{
+    font-family:var(--serif);
+    font-weight:400;
+    font-size:22px;
+    margin-bottom:6px;
+  }
+  .tl-item .tl-place{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.04em;
+    color:rgba(243,239,230,.55);
+    margin-bottom:12px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .tl-item .tl-place img.company-logo{
+    height:22px;
+    width:auto;
+    max-width:60px;
+    object-fit:contain;
+    border-radius:4px;
+    filter:grayscale(30%);
+    opacity:.9;
+    transition:filter .3s ease, opacity .3s ease, transform .3s ease;
+  }
+  .tl-item:hover .tl-place img.company-logo{
+    filter:grayscale(0%);
+    opacity:1;
+    transform:scale(1.08);
+  }
+  .tl-item ul{ padding-left:18px; color:rgba(243,239,230,.78); font-size:14.5px; }
+  .tl-item ul li{ margin-bottom:6px; }
+  @media (max-width:760px){
+    .tl-item{ grid-template-columns:1fr; gap:8px; }
+    .tl-item:hover{ padding-left:0; }
+  }
+
+  /* ---------- small image strip ---------- */
+  .strip{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+  }
+  .strip .thumb{
+    height:120px;
+    flex:0 0 auto;
+    border:1px solid var(--line);
+    background:linear-gradient(135deg,#1b1f2c,#232838);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-family:var(--mono);
+    font-size:10px;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    color:rgba(243,239,230,.4);
+    overflow:hidden;
+    position:relative;
+    z-index:1;
+    transform-origin:left center;
+    transition:transform .28s ease, filter .28s ease, box-shadow .28s ease, border-color .28s ease, opacity .28s ease;
+  }
+  .strip:hover .thumb:not(:hover){
+    filter:brightness(.25) blur(2px);
+    opacity:.6;
+  }
+  .thumb:hover{
+    border-color:var(--mustard);
+    transform:scale(1.8);
+    z-index:2;
+    box-shadow:0 0 0 1px rgba(245,188,66,.35), 0 18px 40px rgba(0,0,0,.65);
+  }
+  .strip .thumb img{ width:100%; height:100%; object-fit:cover; display:none; }
+
+  .thumb-quote{
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    padding:12px;
+    background:transparent;
+    font-family:var(--serif);
+    font-size:12px;
+    line-height:1.4;
+    color:rgba(243,239,230,.85);
+    text-align:center;
+    opacity:0;
+    transform:translateY(-10px);
+    transition:opacity .4s ease .2s, transform .4s ease .2s;
+    pointer-events:none;
+    white-space:nowrap;
+    margin-top:8px;
+  }
+  .thumb:hover .thumb-quote{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  .snap-overlay{
+    display:none !important;
+  }
+
+  .work-rule{
+    display:block;
+    font-family:var(--mono);
+    font-size:13px;
+    color:rgba(243,239,230,.45);
+    margin-bottom:18px;
+  }
+  .projects-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+  }
+  .project{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    padding:20px;
+    border-top:none;
+    border-radius:16px;
+    align-items:stretch;
+    background:transparent;
+    transition:transform .35s ease, background .4s ease, box-shadow .4s ease;
+  }
+  .project:hover{
+    transform:translateY(-6px);
+    background:linear-gradient(160deg, rgba(201,138,44,.10), rgba(156,67,36,.10));
+    box-shadow:0 20px 50px rgba(0,0,0,.35);
+  }
+  .project:first-of-type{ border-top:none; }
+  .project .cover{
+    aspect-ratio:16/11;
+    background: linear-gradient(135deg, #7d5500, #0c0a0a);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:var(--mono);
+    font-size:12px;
+    color:rgba(243,239,230,.4);
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-align:center;
+    overflow:hidden;
+    position:relative;
+    transition:transform .5s ease, box-shadow .4s ease;
+  }
+  .project .cover::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    border:2px solid transparent;
+    transition:border-color .4s ease, box-shadow .4s ease;
+    pointer-events:none;
+    z-index:2;
+  }
+  .project:hover .cover{ transform:scale(1.03); box-shadow:0 16px 36px rgba(0,0,0,.45); }
+  .project:hover .cover::before{ border-color:var(--mustard); box-shadow:0 0 0 4px rgba(201,138,44,.15); }
+  .project .cover img{ width:100%; height:100%; object-fit:cover; }
+  .project .meta{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--mustard);
+    margin-bottom:14px;
+  }
+  .project h3{
+    font-family:var(--serif);
+    font-weight:400;
+    font-size:30px;
+    margin-bottom:14px;
+  }
+  .project p.desc{ color:rgba(243,239,230,.78); margin-bottom:18px; max-width:520px; }
+  .project .credit{
+    font-size:13px;
+    color:rgba(243,239,230,.5);
+    margin-bottom:20px;
+    border-left:2px solid var(--line);
+    padding-left:12px;
+  }
+  .project .tags{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px; }
+  .project .tags span{
+    font-family:var(--mono);
+    font-size:11px;
+    border:1px solid var(--line);
+    padding:4px 10px;
+    border-radius:999px;
+    color:rgba(243,239,230,.7);
+    transition:border-color .2s ease, color .2s ease;
+  }
+  .project .tags span:hover{ border-color:var(--mustard); color:var(--paper); animation:tagJiggle .4s ease; }
+  @keyframes tagJiggle{
+    0%,100%{ transform:translateY(0) rotate(0deg); }
+    30%{ transform:translateY(-3px) rotate(-3deg); }
+    60%{ transform:translateY(-1px) rotate(2deg); }
+  }
+  .project a.view{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    border-bottom:1px solid var(--mustard);
+    color:var(--paper);
+    padding-bottom:2px;
+    transition:color .2s ease;
+  }
+  .project a.view:hover{ color:var(--mustard); }
+
+  /* ---------- skills ---------- */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .skills-grid .col{ background:var(--ink); padding:30px 26px; transition:background .3s ease; }
+  .skills-grid .col:hover{ background:#161a26; }
+  .skills-grid .col h4{
+    font-family:var(--serif);
+    font-weight:400;
+    font-size:18px;
+    margin-bottom:14px;
+    color:var(--mustard);
+  }
+  .skills-grid .col ul{ list-style:none; font-size:14px; color:rgba(243,239,230,.8); }
+  .skills-grid .col ul li{ padding:6px 0; border-top:1px solid var(--line); }
+  .skills-grid .col ul li:first-child{ border-top:none; }
+
+  .lang-row{
+    display:flex; gap:14px; flex-wrap:wrap; margin-top:40px;
+  }
+  .lang-row .pill{
+    font-family:var(--mono);
+    font-size:12px;
+    border:1px solid var(--line);
+    padding:8px 16px;
+    border-radius:999px;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .lang-row .pill:hover{ border-color:var(--mustard); transform:translateY(-2px); }
+  .lang-row .pill b{ color:var(--mustard); font-weight:400; }
+
+  @media (max-width:900px){
+    .about-grid{ grid-template-columns:1fr; gap:36px; }
+    .about-grid .portrait{ aspect-ratio:16/10; }
+    .projects-grid{ grid-template-columns:1fr; }
+    .contact-grid{ grid-template-columns:1fr; gap:36px; }
+    .skills-grid{ grid-template-columns:1fr; }
+  }
+  @media (max-width:760px){
+    section{ padding:64px 0; }
+    .hero{ padding:84px 0 64px; }
+    .hero .ghost{ display:none; }
+    .section-head{ margin-bottom:32px; }
+    .facts{ grid-template-columns:1fr; gap:16px; }
+  }
+  @media (max-width:480px){
+    .wrap{ padding:0 16px; }
+    .hero .sub{ font-size:16px; }
+    .project h3{ font-size:24px; }
+  }
+
+  /* ---------- contact ---------- */
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:60px;
+    align-items:start;
+  }
+  .contact-grid h2{
+    font-family:var(--serif);
+    font-weight:400;
+    font-size:clamp(30px,4.6vw,50px);
+    line-height:1.1;
+    max-width:520px;
+  }
+  .contact-grid h2 a{
+    font-size:23px;
+    text-decoration:none;
+    border-bottom:2px solid var(--mustard);
+  }
+  .social{ list-style:none; margin-top:30px; }
+  .social li{ border-top:1px solid var(--line); }
+  .social li:last-child{ border-bottom:1px solid var(--line); }
+  .social a{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:16px 0;
+    text-decoration:none;
+    font-family:var(--mono);
+    font-size:13px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+  }
+  .social a span.arrow{ color:var(--mustard); transition:transform .15s ease; }
+  .social a:hover span.arrow{ transform:translateX(4px); }
+
+  .confetti-piece{
+    position:fixed;
+    top:0; left:0;
+    width:8px; height:8px;
+    pointer-events:none;
+    z-index:200;
+    border-radius:2px;
+  }
+
+  footer{
+    padding:34px 0;
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.05em;
+    color:rgba(243,239,230,.45);
+  }
+  .footer-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  @media (max-width:600px){
+    footer{ padding:28px 0 40px; }
+    .footer-inner{
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+      gap:6px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<header class="site">
+  <div class="wrap">
+    <nav>
+      <div class="logo"><em>Abdel</em> Moujib</div>
+      <ul id="navMenu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li class="cta"><a href="#contact">Say hello</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="kicker reveal"><span class="dot"></span> Aspiring Data Engineer / AI Engineer — open to internships, 2026</p>
+    <h1 class="reveal">
+      Engineering student -<br>
+      <span class="accent">data pipelines & AI systems</span>.
+    </h1>
+    <p class="sub reveal">
+      I am an engineering student at IMT Atlantique (Brest, France),
+      specialising in data engineering and artificial intelligence.
+      My work focuses on transforming unstructured and heterogeneous
+      data - relational datasets, technical documents - into reliable,
+      queryable systems, through the design of data pipelines,
+      machine learning models and retrieval-augmented architectures.
+    </p>
+    <div class="scroll-cue reveal"><span class="ln"></span> Scroll to see my work</div>
+  </div>
+  <div class="ghost">AM</div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="portrait reveal" >
+<img id="portrait" src="/IMG-20260412-WA0094.jpg" alt="">    </div>
+    <div class="bio reveal">
+      <p>
+        I'm Abdel Moujib Begdouri Terraf - an engineering student at
+        IMT Atlantique, originally from Tangier, Morocco, training to
+        become a data engineer and AI engineer. I'm curious, motivated
+        and a good communicator who adapts easily to new environments.
+      </p>
+      <p>
+        I've always liked sitting with a hard problem until it breaks.
+        Now I point that at data: building ETL pipelines, training
+        clustering models, and putting together retrieval-augmented
+        generation (RAG) systems that turn raw documents into
+        something a chatbot can actually reason about.
+      </p>
+      <p>
+        Outside of school: I play football with I.R.T Tangier, which
+        has taught me a lot about teamwork and performing under
+        pressure. Also worth mentioning: <span class="chess-flex">♞ I've never lost to Hikaru
+        Nakamura at chess</span>.
+      </p>
+      <div class="facts">
+        <div><span class="k">Based in</span><span class="v">Brest, France</span></div>
+        <div><span class="k">Currently</span><span class="v">Engineering student, IMT Atlantique</span></div>
+        <div><span class="k">Focus</span><span class="v">Data engineering · Data science · AI/ML</span></div>
+        <div><span class="k">Open to</span><span class="v">Data / AI internships</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="section-head reveal">
+ <div>
+        <p class="eyebrow">01 — Education</p>
+        <h2>Formal study, and the courses<br>I added on my own.</h2>
+      </div>
+
+    </div>
+    <div class="timeline reveal-stagger">
+      <div class="tl-item">
+        <div class="tl-date">2025 — Present</div>
+        <div>
+          <h3>Engineering Degree</h3>
+          <p class="tl-place">IMT Atlantique, Brest — ranked 3rd engineering school in France (L'Étudiant, 2025)</p>
+          <ul>
+            <li>Curriculum covering Python (OOP, NumPy, Pandas), Java, algorithms, statistics, probability, quantum physics, waves, electricity, and signal processing.</li>
+            <li>Specialized data science track including advanced machine learning, applied statistics, big data architecture, and Spark.</li>
+            <li>Skills in translating business challenges into mathematical or machine learning models, designing predictive pipelines, coding decision-support platforms, managing data projects, and analyzing algorithmic limitations and ethical implications.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2026</div>
+        <div>
+          <h3>Self-directed courses, Harvard (online)</h3>
+          <p class="tl-place">Introduction to Data Science · Introduction to Machine Learning · Neural Networks</p>
+          <ul>
+            <li>Studied independently alongside my engineering degree to build toward a data engineer / AI engineer track.</li>
+            <li>Mastered the end-to-end data science lifecycle, focusing on exploratory data analysis (EDA), data parsing, and manipulation using Python.</li>
+            <li>Covered core ML concepts, predictive modeling pipelines, and a dedicated module on the architecture and optimization of neural networks, applied directly in the projects below.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">2023 — 2025</div>
+        <div>
+          <h3>Preparatory Class, MPSI/MP</h3>
+          <p class="tl-place">Lycée Moulay Al Hassan, Tangier</p>
+          <ul>
+            <li>Intensive training in mathematics, physics and engineering sciences.</li>
+            <li>Built analytical method, rigour and independence ahead of engineering school.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">02 — Projects</p>
+        <h2>Data & AI projects</h2>
+      </div>
+    </div>
+
+    <div class="projects-grid">
+    <!-- PROJECT 1 -->
+    <div class="project reveal">
+      <div class="cover" >
+        <img id = "portrait" src="Screenshot 2026-06-25 204033.png" alt="">
+      </div>
+      <div>
+        <p class="meta">Team project — Sept 2025 – Jan 2026</p>
+        <h3>Medleaf — Conversational RAG Agent for Drug Leaflet Understanding</h3>
+        <p class="desc">
+          Medication leaflets are often complex and highly technical, which can lead to critical misunderstandings regarding dosage, side effects, and contraindications. To bridge this gap, I developed a RAG-based (Retrieval-Augmented Generation) conversational chatbot. The system extracts official medical data to provide users with clear, simplified, and easy-to-understand answers.
+        </p>
+        <p class="desc">
+          The system retrieves official drug leaflet data from the FDA Open API using Python's requests library. The extracted text is then chunked, embedded, and stored in a persistent vector database, which serves as the foundation for the retrieval system during inference.
+        </p>
+        <div class="tags">
+          <span>Retrieval-Augmented Generation (RAG)</span>
+          <span>API Integration</span>
+          <span>Data Pipelines</span>
+          <span>Semantic Search</span>
+        </div>
+        <a class="view" href="project-3.html" >View project →</a>
+      </div>
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="project reveal">
+      <div class="cover" >
+        <img id = "portrait" src="Code_Generated_Image.png" alt="">
+      </div>
+      <div>
+        <p class="meta">Team project — 2023 – 2025</p>
+        <h3>Dashboard for Educational Equality</h3>
+        <p class="desc">
+          As a team of five, we aimed to solve a concrete challenge: the sheer volume and complexity of available national education data. Our goal was to make this information clear, intuitive, and accessible to non-data specialists, in order to facilitate strategic decision-making for stakeholders within the Ministry of National Education.
+        </p>
+        <p class="desc">
+          To achieve this, we extracted and cleaned the national educational datasets using Python (Pandas), and built advanced clustering models, including K-Means and DBSCAN, followed by hyperparameter optimization. In parallel, we developed an interactive dashboard to visualize our clustering results seamlessly. Finally, our project was presented to a panel of jurors to validate our work.
+        </p>
+        <p class="credit">
+          My role: Data extraction and cleaning (Python), model development (Python).
+        </p>
+        <div class="tags">
+          <span>Data Pipeline (ETL)</span>
+          <span>Unsupervised Machine Learning</span>
+          <span>Data Visualization</span>
+        </div>
+        <a class="view" href="project-2.html" >View project →</a>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">03 — Experience</p>
+        <h2>Hands-on work.</h2>
+      </div>
+    </div>
+    <div class="timeline reveal-stagger">
+      <div class="tl-item">
+        <div class="tl-date">Jun – Jul 2025</div>
+        <div>
+          <h3>Factory Intern</h3>
+          <p class="tl-place"><img class="company-logo" src="/logos/1671269789556-removebg-preview.png" alt="BS Cast logo">BS Cast — Metallurgical Industry, Tangier, Morocco</p>
+          <ul>
+            <li>Materials handling, assembly and quality control on the production line.</li>
+            <li>Use of tools and strict compliance with safety regulations.</li>
+            <li>Teamwork, adapting to industrial pacing and procedures.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2023 — 2024</div>
+        <div>
+          <h3>General Employee (student job)</h3>
+          <p class="tl-place"><img class="company-logo" src="/logos/352-removebg-preview.png" alt="Marjane logo">Marjane, Tangier, Morocco</p>
+          <ul>
+            <li>Stocking shelves, organising storage and managing product inventory.</li>
+            <li>Welcoming, guiding and advising customers in-store.</li>
+            <li>Teamwork in a dynamic retail environment.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">04 — Skills</p>
+        <h2>What I bring</h2>
+      </div>
+
+    </div>
+    <div class="skills-grid reveal">
+      <div class="col">
+        <h4>Data engineering</h4>
+        <ul>
+          <li>Python (Pandas, NumPy) — extraction, cleaning, ETL pipelines</li>
+          <li>API integration & data acquisition (e.g. FDA Open API)</li>
+          <li>Vector databases & semantic search for RAG pipelines</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h4>Data science & AI</h4>
+        <ul>
+          <li>Unsupervised ML — K-Means, DBSCAN, hyperparameter tuning</li>
+          <li>Retrieval-Augmented Generation (RAG), conversational agents</li>
+          <li>Neural networks & ML fundamentals (Harvard, online)</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h4>People & teamwork</h4>
+        <ul>
+          <li>Customer-facing retail experience — welcoming, guiding, advising</li>
+          <li>Team sport (football, Ajax Tangier) — pressure & perseverance</li>
+        </ul>
+      </div>
+    </div>
+    <div class="lang-row reveal">
+      <span class="pill"><b>French</b> — Fluent (C1)</span>
+      <span class="pill"><b>English</b> — Professional (B2)</span>
+      <span class="pill"><b>Arabic</b> — Native</span>
+      <span class="pill"><b>Spanish</b> — Basic (A2)</span>
+    </div>
+  </div>
+</section>
+
+<!--
+<section id="snapshots">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">In the wild</p>
+        <h2>A few snapshots.</h2>
+      </div>
+    </div>
+    <div class="strip reveal-stagger">
+      <div class="thumb" data-quote="Capturing moments that matter." ><img id="portrait"  src="snapshot/_MG_0262.JPG" alt=""><span class="thumb-quote">Capturing moments that matter.</span></div>
+      <div class="thumb" data-quote="Life is the art of drawing without an eraser." ><img id="portrait" src="snapshot/photo-149.jpg" alt=""><span class="thumb-quote">Life is the art of drawing without an eraser.</span></div>
+      <div class="thumb" data-quote="Every frame tells a story." ><img id="portrait" src="snapshot/s-blob-v1-IMAGE-L-uNHLa81pQ.jfif" alt=""><span class="thumb-quote">Every frame tells a story.</span></div>
+
+      <div class="thumb" data-quote="In the moment." ><img id="portrait" src="IMG-20260412-WA0094.jpg" alt=""><span class="thumb-quote">In the moment.</span></div>
+      <div class="thumb" data-quote="Seek beauty in simplicity." ><img id="portrait" src="snapshot/_MG_8802.JPG" alt=""><span class="thumb-quote">Seek beauty in simplicity.</span></div>
+
+      <div class="thumb" data-quote="Life, unfiltered." ><img id="portrait" src="snapshot/s-blob-v1-IMAGE-cHgx_ITEElo.jfif" alt=""><span class="thumb-quote">Life, unfiltered.</span></div>
+    </div>
+  </div>
+</section>
+-->
+
+<section id="contact">
+  <div class="wrap contact-grid">
+    <div class="reveal">
+      <p class="eyebrow" style="font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mustard);margin-bottom:18px;">05 — Get in touch</p>
+      <h2>
+        Looking for a data / AI<br>internship or student job?<br>
+        <a id="emailLink" href="mailto:abdel-moujib.begdouri-terraf@imt-atlantique.net">abdel-moujib.begdouri-terraf@imt-atlantique.net</a>
+      </h2>
+    </div>
+    <ul class="social reveal">
+      <li><a href="tel:+33745765238"><span>Phone (FR)</span><span class="arrow">+33 7 45 76 52 38</span></a></li>
+      <li><a href="tel:+212633414838"><span>Phone (MA)</span><span class="arrow">+212 6 33 41 48 38</span></a></li>
+      <li><a href="https://www.linkedin.com/in/abdel-moujib-begdouri-terraf-165748288" target="_blank"><span>LinkedIn </span><span class="arrow">↗</span></a></li>
+      <li><a href="https://github.com/abdo0620" target="_blank" ><span>GitHub</span><span class="arrow">↗</span></a></li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© 2026 Abdel Moujib Begdouri Terraf. Brest, France.</span>
+  </div>
+</footer>
+
+<script>
+  // --- mobile nav toggle ---
+  const navToggle = document.getElementById('navToggle');
+  const navMenu = document.getElementById('navMenu');
+  navToggle.addEventListener('click', () => {
+    const open = navMenu.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+    navToggle.textContent = open ? '✕' : '☰';
+  });
+  navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navMenu.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', false);
+    navToggle.textContent = '☰';
+  }));
+
+  // --- scroll progress bar ---
+  const progressBar = document.getElementById('scrollProgress');
+  function updateProgress(){
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive:true });
+  updateProgress();
+
+  // --- scroll reveal animations ---
+  const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+  revealEls.forEach(el => io.observe(el));
+
+  // stagger delays for children inside .reveal-stagger
+  document.querySelectorAll('.reveal-stagger').forEach(group => {
+    Array.from(group.children).forEach((child, i) => {
+      child.style.transitionDelay = (i * 90) + 'ms';
+    });
+  });
+
+  // --- tiny confetti burst when someone clicks the email (send hire vibes) ---
+  const emailLink = document.getElementById('emailLink');
+  if (emailLink){
+    emailLink.addEventListener('click', (e) => {
+      const rect = emailLink.getBoundingClientRect();
+      const originX = rect.left + rect.width / 2;
+      const originY = rect.top + rect.height / 2;
+      const colors = ['#c98a2c', '#f3efe6', '#9c4324'];
+      for (let i = 0; i < 22; i++){
+        const piece = document.createElement('div');
+        piece.className = 'confetti-piece';
+        piece.style.background = colors[i % colors.length];
+        piece.style.left = originX + 'px';
+        piece.style.top = originY + 'px';
+        document.body.appendChild(piece);
+
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 60 + Math.random() * 90;
+        const dx = Math.cos(angle) * distance;
+        const dy = Math.sin(angle) * distance - 40;
+        const rot = (Math.random() * 720 - 360) + 'deg';
+
+        piece.animate([
+          { transform: 'translate(0,0) rotate(0deg)', opacity: 1 },
+          { transform: `translate(${dx}px, ${dy}px) rotate(${rot})`, opacity: 0 }
+        ], {
+          duration: 700 + Math.random() * 400,
+          easing: 'cubic-bezier(.2,.8,.2,1)'
+        }).onfinish = () => piece.remove();
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
