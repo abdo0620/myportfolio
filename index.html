@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Abdel Moujib Begdouri Terraf — Data Engineer & AI Portfolio</title>
+<title>Abdel Moujib Begdouri Terraf — Data Science & AI Portfolio</title>
 <style>
   :root{
     --ink:#11141c;
@@ -595,8 +595,20 @@
   .skills-grid .col ul li{ padding:6px 0; border-top:1px solid var(--line); }
   .skills-grid .col ul li:first-child{ border-top:none; }
 
+  .languages-panel{
+    margin-top:40px;
+    padding-top:28px;
+    border-top:1px solid var(--line);
+  }
+  .languages-panel h4{
+    font-family:var(--serif);
+    font-weight:400;
+    font-size:20px;
+    margin-bottom:18px;
+    color:var(--mustard);
+  }
   .lang-row{
-    display:flex; gap:14px; flex-wrap:wrap; margin-top:40px;
+    display:flex; gap:14px; flex-wrap:wrap;
   }
   .lang-row .pill{
     font-family:var(--mono);
@@ -722,14 +734,14 @@
 
 <section class="hero">
   <div class="wrap">
-    <p class="kicker reveal"><span class="dot"></span> Aspiring Data Engineer / AI Engineer — open to internships, 2026</p>
+    <p class="kicker reveal"><span class="dot"></span> Aspiring Data Scientist / AI Engineer — open to internships, 2026</p>
     <h1 class="reveal">
       Engineering student -<br>
       <span class="accent">data pipelines & AI systems</span>.
     </h1>
     <p class="sub reveal">
       I am an engineering student at IMT Atlantique (Brest, France),
-      specialising in data engineering and artificial intelligence.
+      specialising in data science and artificial intelligence.
       My work focuses on transforming unstructured and heterogeneous
       data - relational datasets, technical documents - into reliable,
       queryable systems, through the design of data pipelines,
@@ -748,18 +760,18 @@
       <p>
         I'm Abdel Moujib Begdouri Terraf - an engineering student at
         IMT Atlantique, originally from Tangier, Morocco, training to
-        become a data engineer and AI engineer. I'm curious, motivated
+        become a data scientist and AI engineer. I'm curious, motivated
         and a good communicator who adapts easily to new environments.
       </p>
       <p>
         I've always liked sitting with a hard problem until it breaks.
         Now I point that at data: building ETL pipelines, training
-        clustering models, and putting together retrieval-augmented
-        generation (RAG) systems that turn raw documents into
-        something a chatbot can actually reason about.
+        machine learning and clustering models, and putting together
+        retrieval-augmented generation (RAG) systems that turn raw
+        documents into something a chatbot can actually reason about.
       </p>
       <p>
-        Outside of school: I play football with I.R.T Tangier, which
+        Outside of school: I play football with ajax Tangier, which
         has taught me a lot about teamwork and performing under
         pressure. Also worth mentioning: <span class="chess-flex">♞ I've never lost to Hikaru
         Nakamura at chess</span>.
@@ -767,7 +779,7 @@
       <div class="facts">
         <div><span class="k">Based in</span><span class="v">Brest, France</span></div>
         <div><span class="k">Currently</span><span class="v">Engineering student, IMT Atlantique</span></div>
-        <div><span class="k">Focus</span><span class="v">Data engineering · Data science · AI/ML</span></div>
+        <div><span class="k">Focus</span><span class="v">Data science · Data engineering · AI/ML</span></div>
         <div><span class="k">Open to</span><span class="v">Data / AI internships</span></div>
       </div>
     </div>
@@ -791,8 +803,8 @@
           <p class="tl-place">IMT Atlantique, Brest — ranked 3rd engineering school in France (L'Étudiant, 2025)</p>
           <ul>
             <li>Curriculum covering Python (OOP, NumPy, Pandas), Java, algorithms, statistics, probability, quantum physics, waves, electricity, and signal processing.</li>
-            <li>Specialized data science track including advanced machine learning, applied statistics, big data architecture, and Spark.</li>
-            <li>Skills in translating business challenges into mathematical or machine learning models, designing predictive pipelines, coding decision-support platforms, managing data projects, and analyzing algorithmic limitations and ethical implications.</li>
+            <li>Built the foundations of supervised learning with logistic regression, classification models, regularization, model evaluation, and optimization.</li>
+            <li>Developed the ability to translate business or scientific problems into mathematical and machine learning pipelines, while analyzing algorithmic limits and ethical implications.</li>
           </ul>
         </div>
       </div>
@@ -802,9 +814,9 @@
           <h3>Self-directed courses, Harvard (online)</h3>
           <p class="tl-place">Introduction to Data Science · Introduction to Machine Learning · Neural Networks</p>
           <ul>
-            <li>Studied independently alongside my engineering degree to build toward a data engineer / AI engineer track.</li>
+            <li>Studied independently alongside my engineering degree to build toward a data scientist / AI engineer track.</li>
             <li>Mastered the end-to-end data science lifecycle, focusing on exploratory data analysis (EDA), data parsing, and manipulation using Python.</li>
-            <li>Covered core ML concepts, predictive modeling pipelines, and a dedicated module on the architecture and optimization of neural networks, applied directly in the projects below.</li>
+            <li>Deepened my understanding of deep learning, including CNNs, neural network architecture, optimization, and fine-tuning techniques, applied directly in the projects below.</li>
           </ul>
         </div>
       </div>
@@ -843,10 +855,10 @@
         <p class="meta">Team project — Sept 2025 – Jan 2026</p>
         <h3>Medleaf — Conversational RAG Agent for Drug Leaflet Understanding</h3>
         <p class="desc">
-          Medication leaflets are often complex and highly technical, which can lead to critical misunderstandings regarding dosage, side effects, and contraindications. To bridge this gap, I developed a RAG-based (Retrieval-Augmented Generation) conversational chatbot. The system extracts official medical data to provide users with clear, simplified, and easy-to-understand answers.
+          Medication leaflets are often complex and highly technical, which can lead to critical misunderstandings regarding dosage, side effects, and contraindications. To bridge this gap, I developed a RAG-based (Retrieval-Augmented Generation) conversational chatbot that provides clear, simplified, and reliable answers from trusted medical sources.
         </p>
         <p class="desc">
-          The system retrieves official drug leaflet data from the FDA Open API using Python's requests library. The extracted text is then chunked, embedded, and stored in a persistent vector database, which serves as the foundation for the retrieval system during inference.
+          The system pulls official drug information from the FDA Open Data sources and can also process documents uploaded by the user. The retrieved text is cleaned, chunked, embedded, and stored in a persistent vector database, enabling fast semantic retrieval during inference and allowing the chatbot to answer questions grounded in the most relevant medical content.
         </p>
         <div class="tags">
           <span>Retrieval-Augmented Generation (RAG)</span>
@@ -937,17 +949,20 @@
       <div class="col">
         <h4>Data engineering</h4>
         <ul>
-          <li>Python (Pandas, NumPy) — extraction, cleaning, ETL pipelines</li>
-          <li>API integration & data acquisition (e.g. FDA Open API)</li>
+          <li>Python, SQL, Pandas, NumPy — extraction, cleaning, ETL pipelines</li>
+          <li>API integration & data acquisition</li>
+          <li>Streamlit dashboards & data visualization with Matplotlib + Seaborn</li>
           <li>Vector databases & semantic search for RAG pipelines</li>
         </ul>
       </div>
       <div class="col">
         <h4>Data science & AI</h4>
         <ul>
-          <li>Unsupervised ML — K-Means, DBSCAN, hyperparameter tuning</li>
+          <li>Supervised learning fundamentals from engineering degree — Logistic Regression, decision trees, model evaluation</li>
+          <li>Scikit-learn — XGBoost, AdaBoost, clustering, hyperparameter tuning</li>
+          <li>Deep learning, CNNs, and neural networks</li>
+          <li>TensorFlow & Keras — fine-tuning, transfer learning, and model optimization</li>
           <li>Retrieval-Augmented Generation (RAG), conversational agents</li>
-          <li>Neural networks & ML fundamentals (Harvard, online)</li>
         </ul>
       </div>
       <div class="col">
@@ -958,11 +973,15 @@
         </ul>
       </div>
     </div>
-    <div class="lang-row reveal">
-      <span class="pill"><b>French</b> — Fluent (C1)</span>
-      <span class="pill"><b>English</b> — Professional (B2)</span>
-      <span class="pill"><b>Arabic</b> — Native</span>
-      <span class="pill"><b>Spanish</b> — Basic (A2)</span>
+
+    <div class="languages-panel reveal">
+      <h4>Languages</h4>
+      <div class="lang-row">
+        <span class="pill"><b>French</b> — Fluent (C1)</span>
+        <span class="pill"><b>English</b> — Professional (B2)</span>
+        <span class="pill"><b>Arabic</b> — Native</span>
+        <span class="pill"><b>Spanish</b> — Basic (A2)</span>
+      </div>
     </div>
   </div>
 </section>
