@@ -367,6 +367,28 @@
     font-weight:400;
     font-size:22px;
     margin-bottom:6px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .tl-item .current-badge{
+    font-family:var(--mono);
+    font-size:10px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink);
+    background:var(--mustard);
+    padding:3px 9px;
+    border-radius:999px;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .tl-item .current-badge .pulse-dot{
+    width:6px;height:6px;border-radius:50%;
+    background:var(--ink);
+    animation:pulse 2.4s ease-in-out infinite;
   }
   .tl-item .tl-place{
     font-family:var(--mono);
@@ -392,6 +414,21 @@
     filter:grayscale(0%);
     opacity:1;
     transform:scale(1.08);
+  }
+  .logo-block{
+    display:block;
+    height:32px;
+    width:auto;
+    max-width:140px;
+    object-fit:contain;
+    margin-bottom:12px;
+    filter:grayscale(20%);
+    opacity:.92;
+    transition:filter .3s ease, opacity .3s ease;
+  }
+  .tl-item:hover .logo-block, .project:hover .logo-block{
+    filter:grayscale(0%);
+    opacity:1;
   }
   .tl-item ul{ padding-left:18px; color:rgba(243,239,230,.78); font-size:14.5px; }
   .tl-item ul li{ margin-bottom:6px; }
@@ -523,6 +560,16 @@
   .project:hover .cover{ transform:scale(1.03); box-shadow:0 16px 36px rgba(0,0,0,.45); }
   .project:hover .cover::before{ border-color:var(--mustard); box-shadow:0 0 0 4px rgba(201,138,44,.15); }
   .project .cover img{ width:100%; height:100%; object-fit:cover; }
+
+  .project.featured{
+    grid-column: 1 / -1;
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+  }
+  .project.featured .cover{
+    aspect-ratio:21/9;
+  }
   .project .meta{
     font-family:var(--mono);
     font-size:11px;
@@ -530,6 +577,9 @@
     text-transform:uppercase;
     color:var(--mustard);
     margin-bottom:14px;
+    display:flex;
+    align-items:center;
+    gap:10px;
   }
   .project h3{
     font-family:var(--serif);
@@ -836,6 +886,35 @@
   </div>
 </section>
 
+<section id="current">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Right now</p>
+        <h2>What I'm currently working on</h2>
+      </div>
+      <p class="note">A quick snapshot of where my time is going this term, before the full experience timeline below.</p>
+    </div>
+    <div class="timeline reveal-stagger">
+      <div class="tl-item">
+        <div class="tl-date">Sept 2026 - Jan 2027</div>
+        <div>
+          <h3>IRISPACE - AI Opportunity-Watch Agent <span class="current-badge"><span class="pulse-dot"></span>In progress</span></h3>
+          <img class="logo-block" src="logos\reversed_logo.png" alt="IRISPACE logo">
+          <p class="tl-place">Company Project (IMT Atlantique) · Team of 6 · for IRISPACE (Institut Régional de l'Innovation Spatiale de Bretagne)</p>
+          <ul>
+            <li>Building an AI agent that automatically identifies regional, national and European opportunities in the space sector (calls for proposals, tenders, expressions of interest, events).</li>
+            <li>Collecting and analyzing opportunities using an LLM combined with semantic search over source documents.</li>
+            <li>Automatic classification by theme and by target audience (academic, industrial, mixed).</li>
+            <li>Structuring results into a database with a search, filter and visualization interface for end users.</li>
+            <li>Involved across the full project cycle: specifications, functional prototype, evaluation on a reference dataset, and technical documentation.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="projects">
   <div class="wrap">
     <div class="section-head reveal">
@@ -918,6 +997,30 @@
         <a class="view" href="project-2.html" >View project →</a>
       </div>
     </div>
+
+    <!-- PROJECT 4: IRISPACE -->
+    <div class="project featured reveal">
+      <div class="cover">
+        <img id="portrait" src="images/irispace-cover.jpg" alt="">
+      </div>
+      <div>
+        <img class="logo-block" src="logos\reversed_logo.png" alt="IRISPACE logo">
+        <p class="meta">Team project (6) - Sept 2026 – Jan 2027 <span class="current-badge"><span class="pulse-dot"></span>Ongoing</span></p>
+        <h3>IRISPACE - AI Agent for Space Sector Opportunity Monitoring</h3>
+        <p class="desc">
+          Company project for IMT Atlantique, built for the Institut Régional de l'Innovation Spatiale de Bretagne (IRISPACE). Regional, national and European opportunities in the space sector - calls for proposals, tenders, expressions of interest, and events - are scattered across many sources and hard to track manually.
+        </p>
+        <p class="desc">
+          As part of a 6-person team, I'm helping build an AI agent that collects and analyzes these opportunities using an LLM and semantic search, automatically classifies them by theme and target audience (academic, industrial, mixed), and structures the results into a database behind a search, filter and visualization interface. My involvement spans the full project cycle: specifications, functional prototype, evaluation on a reference dataset, and technical documentation.
+        </p>
+        <div class="tags">
+          <span>LLM-based Agents</span>
+          <span>Semantic Search</span>
+          <span>Classification</span>
+          <span>Database & Interface Design</span>
+        </div>
+      </div>
+    </div>
     </div>
   </div>
 </section>
@@ -931,6 +1034,20 @@
       </div>
     </div>
     <div class="timeline reveal-stagger">
+      <div class="tl-item">
+        <div class="tl-date">Sept 2026 - Jan 2027</div>
+        <div>
+          <h3>AI Agent for Space Sector Opportunity Monitoring <span class="current-badge"><span class="pulse-dot"></span>In progress</span></h3>
+          <img class="logo-block" src="logos\reversed_logo.png" alt="IRISPACE logo">
+          <p class="tl-place">IRISPACE - Company Project, IMT Atlantique · Team of 6</p>
+          <ul>
+            <li>Developing an AI agent for the Institut Régional de l'Innovation Spatiale de Bretagne to automatically identify regional, national and European space-sector opportunities (calls for proposals, tenders, expressions of interest, events).</li>
+            <li>Collecting and analyzing opportunities via LLM and semantic search; automatic classification by theme and by target audience (academic, industrial, mixed).</li>
+            <li>Structuring results into a database with a search, filter and visualization interface.</li>
+            <li>Participating in the full project cycle: specifications, functional prototype, evaluation on a reference dataset, and technical documentation.</li>
+          </ul>
+        </div>
+      </div>
       <div class="tl-item">
         <div class="tl-date">Jun – Jul 2025</div>
         <div>
@@ -1008,29 +1125,6 @@
     </div>
   </div>
 </section>
-
-<!--
-<section id="snapshots">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div>
-        <p class="eyebrow">In the wild</p>
-        <h2>A few snapshots.</h2>
-      </div>
-    </div>
-    <div class="strip reveal-stagger">
-      <div class="thumb" data-quote="Capturing moments that matter." ><img id="portrait"  src="snapshot/_MG_0262.JPG" alt=""><span class="thumb-quote">Capturing moments that matter.</span></div>
-      <div class="thumb" data-quote="Life is the art of drawing without an eraser." ><img id="portrait" src="snapshot/photo-149.jpg" alt=""><span class="thumb-quote">Life is the art of drawing without an eraser.</span></div>
-      <div class="thumb" data-quote="Every frame tells a story." ><img id="portrait" src="snapshot/s-blob-v1-IMAGE-L-uNHLa81pQ.jfif" alt=""><span class="thumb-quote">Every frame tells a story.</span></div>
-
-      <div class="thumb" data-quote="In the moment." ><img id="portrait" src="IMG-20260412-WA0094.jpg" alt=""><span class="thumb-quote">In the moment.</span></div>
-      <div class="thumb" data-quote="Seek beauty in simplicity." ><img id="portrait" src="snapshot/_MG_8802.JPG" alt=""><span class="thumb-quote">Seek beauty in simplicity.</span></div>
-
-      <div class="thumb" data-quote="Life, unfiltered." ><img id="portrait" src="snapshot/s-blob-v1-IMAGE-cHgx_ITEElo.jfif" alt=""><span class="thumb-quote">Life, unfiltered.</span></div>
-    </div>
-  </div>
-</section>
--->
 
 <section id="contact">
   <div class="wrap contact-grid">
