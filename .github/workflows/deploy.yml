@@ -20,7 +20,21 @@ jobs:
         env:
           GEMINI_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
+          if [ -z "$GEMINI_KEY" ]; then
+            echo "::error::GEMINI_API_KEY secret is missing or empty!"
+            exit 1
+          fi
+          
+          # Replace placeholder string
           sed -i "s|__GEMINI_API_KEY__|${GEMINI_KEY}|g" index.html
+          
+          # Verify replacement worked
+          if grep -q "__GEMINI_API_KEY__" index.html; then
+            echo "::error::Replacement failed! Placeholder __GEMINI_API_KEY__ was still found in index.html"
+            exit 1
+          else
+            echo "SUCCESS: Key successfully injected into index.html"
+          fi
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
